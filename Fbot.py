@@ -16,3 +16,5 @@ Fbot = Client(
     api_hash=api_hash,
     plugins=plugins
 )
+
+Fbot.run()
