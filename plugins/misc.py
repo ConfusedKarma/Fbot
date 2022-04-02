@@ -23,95 +23,39 @@ async def up(bot, message):
 
 @Client.on_message(filters.command("id", CUSTOM_CMD))
 async def get_id(bot, message):
+    msg = message.reply_to_message or message
+    out_str = f"**Chat ID** : `{(msg.forward_from_chat or msg.chat).id}`\n"
+    out_str += f"**Message ID** : `{msg.forward_from_message_id or msg.message_id}`\n"
+    if msg.from_user:
+        out_str += f"**From User ID** : `{msg.from_user.id}`\n"
+    if msg.sender_chat:
+        out_str += f"**Channel ID** : `{msg.sender_chat.id}`\n"
     file_id = None
-    user_id = None
-
-    if message.reply_to_message:
-        rep = message.reply_to_message
-
-        if rep.audio:
-            file_id = f"**File ID**: `{rep.audio.file_id}`"
-            file_id += f"**File Ref**: `{rep.audio.file_ref}`"
-            file_id += "**File Type**: `audio`"
-
-        elif rep.document:
-            file_id = f"**File ID**: `{rep.document.file_id}`"
-            file_id += f"**File Ref**: `{rep.document.file_ref}`"
-            file_id += f"**File Type**: `{rep.document.mime_type}`"
-
-        elif rep.photo:
-            file_id = f"**File ID**: `{rep.photo.file_id}`"
-            file_id += f"**File Ref**: `{rep.photo.file_ref}`"
-            file_id += "**File Type**: `photo`"
-
-        elif rep.sticker:
-            file_id = f"**Sicker ID**: `{rep.sticker.file_id}`\n"
-            if rep.sticker.set_name and rep.sticker.emoji:
-                file_id += f"**Sticker Set**: `{rep.sticker.set_name}`\n"
-                file_id += f"**Sticker Emoji**: `{rep.sticker.emoji}`\n"
-                if rep.sticker.is_animated:
-                    file_id += f"**Animated Sticker**: `{rep.sticker.is_animated}`\n"
-                else:
-                    file_id += "**Animated Sticker**: `False`\n"
-            else:
-                file_id += "**Sticker Set**: __None__\n"
-                file_id += "**Sticker Emoji**: __None__"
-
-        elif rep.video:
-            file_id = f"**File ID**: `{rep.video.file_id}`\n"
-            file_id += f"**File Ref**: `{rep.video.file_ref}`\n"
-            file_id += "**File Type**: `video`"
-
-        elif rep.animation:
-            file_id = f"**File ID**: `{rep.animation.file_id}`\n"
-            file_id += f"**File Ref**: `{rep.animation.file_ref}`\n"
-            file_id += "**File Type**: `GIF`"
-
-        elif rep.voice:
-            file_id = f"**File ID**: `{rep.voice.file_id}`\n"
-            file_id += f"**File Ref**: `{rep.voice.file_ref}`\n"
-            file_id += "**File Type**: `Voice Note`"
-
-        elif rep.video_note:
-            file_id = f"**File ID**: `{rep.animation.file_id}`\n"
-            file_id += f"**File Ref**: `{rep.animation.file_ref}`\n"
-            file_id += "**File Type**: `Video Note`"
-
-        elif rep.location:
-            file_id = "**Location**:\n"
-            file_id += f"**longitude**: `{rep.location.longitude}`\n"
-            file_id += f"**latitude**: `{rep.location.latitude}`"
-
-        elif rep.venue:
-            file_id = "**Location**:\n"
-            file_id += f"**longitude**: `{rep.venue.location.longitude}`\n"
-            file_id += f"**latitude**: `{rep.venue.location.latitude}`\n\n"
-            file_id += "**Address**:\n"
-            file_id += f"**title**: `{rep.venue.title}`\n"
-            file_id += f"**detailed**: `{rep.venue.address}`\n\n"
-
-        elif rep.from_user:
-            user_id = rep.from_user.id
-
-    if user_id:
-        if rep.forward_from:
-            user_detail = (
-                f"**Forwarded User ID**: `{message.reply_to_message.forward_from.id}`\n"
-            )
-        else:
-            user_detail = f"**User ID**: `{message.reply_to_message.from_user.id}`\n"
-        user_detail += f"**Message ID**: `{message.reply_to_message.message_id}`"
-        await message.reply(user_detail)
-    elif file_id:
-        if rep.forward_from:
-            user_detail = (
-                f"**Forwarded User ID**: `{message.reply_to_message.forward_from.id}`\n"
-            )
-        else:
-            user_detail = f"**User ID**: `{message.reply_to_message.from_user.id}`\n"
-        user_detail += f"**Message ID**: `{message.reply_to_message.message_id}`\n\n"
-        user_detail += file_id
-        await message.reply(user_detail)
-
-    else:
-        await message.reply(f"**Chat ID**: `{message.chat.id}`")
+    if msg.audio:
+        type_ = "audio"
+        file_id = msg.audio.file_id
+    elif msg.animation:
+        type_ = "animation"
+        file_id = msg.animation.file_id
+    elif msg.document:
+        type_ = "document"
+        file_id = msg.document.file_id
+    elif msg.photo:
+        type_ = "photo"
+        file_id = msg.photo.file_id
+    elif msg.sticker:
+        type_ = "sticker"
+        file_id = msg.sticker.file_id
+    elif msg.voice:
+        type_ = "voice"
+        file_id = msg.voice.file_id
+    elif msg.video_note:
+        type_ = "video_note"
+        file_id = msg.video_note.file_id
+    elif msg.video:
+        type_ = "video"
+        file_id = msg.video.file_id
+    if file_id is not None:
+        out_str += f"💾**Media Type:** `{type_}`\n"
+        out_str += f"🗃️**File ID:** `{file_id}`"
+    await message.reply(out_str)
