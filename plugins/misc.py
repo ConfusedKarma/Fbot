@@ -3,6 +3,7 @@ import io
 import sys
 import traceback
 from pyrogram import Client, filters
+from pyrogram.types import Message
 from datetime import datetime
 from platform import python_version
 from pyrogram import __version__
