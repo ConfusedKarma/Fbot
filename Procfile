@@ -1,1 +1,1 @@
-worker: python3 -m fbot
+worker: python3 -m Fbot
