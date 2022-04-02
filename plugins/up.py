@@ -11,7 +11,7 @@ CUSTOM_CMD = "!"
 START_TIME = datetime.now()
 
 @Client.on_message(filters.command("up", CUSTOM_CMD))
-async def up(_, message:):
+async def up(message):
     txt = (
         f"-> Current Uptime: `{str(datetime.now() - START_TIME).split('.')[0]}`\n"
         f"-> Python: `{python_version()}`\n"
