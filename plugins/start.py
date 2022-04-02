@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 START_TEXT = """Hello {} #fkoff"""
-CMD_TRIGGER = !
+CMD_TRIGGER = "!"
 
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Owner', url='https://telegram.me/refundisillegal')]])
 
