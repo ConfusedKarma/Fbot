@@ -28,7 +28,7 @@ class fbot(Client):
 
 if __name__ == "__main__" :
     fbot().run()
-    LOGGER.info(
+    logger.info(
             f"Pyrogram v{__version__} "
             f"(Layer {layer}) started on @{usr_bot_me.username}. "
             "Hi."
