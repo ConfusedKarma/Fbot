@@ -16,8 +16,8 @@ class fbot(Client):
     def __init__(self):
         super().__init__(
             session_name="FBOT",
-            bot_token = Config.BOT_TOKEN,
-            api_id = Config.API_ID,
+            bot_token = Config.TOKEN,
+            api_id = Config.APP_ID,
             api_hash = Config.API_HASH,
             workers = 20,
             plugins = dict(
