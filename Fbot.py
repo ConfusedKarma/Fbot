@@ -27,3 +27,4 @@ class fbot(Client):
 
 if __name__ == "__main__" :
     fbot().run()
+    logger.info(🚩🚩)
