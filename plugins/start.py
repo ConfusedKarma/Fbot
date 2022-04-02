@@ -3,13 +3,13 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 START_TEXT = """Hello {} #fkoff"""
-CMD_TRIGGER = "!"
+CUSTOM_CMD = "!"
 
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Owner', url='https://telegram.me/refundisillegal')]])
 
 
 
-@Client.on_message(filters.command("start", CMD_TRIGGER))
+@Client.on_message(filters.command("start", CUSTOM_CMD))
 async def start(bot, update):
     await update.reply_text(
         text=START_TEXT.format(update.from_user.mention),
