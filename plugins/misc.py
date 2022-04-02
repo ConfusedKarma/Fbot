@@ -70,7 +70,7 @@ async def carbon_test(_, message: Message):
     carbon_text = message.text[8:]
 
     # Write the code to a file cause carbon-now-cli wants a file.
-    file = "singh/carbon.{}".format(get_carbon_lang())
+    file = "singh/carbon"
     with open(file, "w+") as f:
         f.write(carbon_text)
 
