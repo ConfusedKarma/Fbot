@@ -1,3 +1,4 @@
+import os
 import io
 import sys
 import traceback
@@ -6,6 +7,7 @@ from datetime import datetime
 from platform import python_version
 from pyrogram import __version__
 
+from Fbot import fbot
 
 CUSTOM_CMD = "!"
 START_TIME = datetime.now()
@@ -59,3 +61,21 @@ async def get_id(bot, message):
         out_str += f"💾**Media Type:** `{type_}`\n"
         out_str += f"🗃️**File ID:** `{file_id}`"
     await message.reply(out_str)
+
+
+@Client.on_message(filters.command("carbon", CUSTOM_CMD))
+async def carbon_test(_, message: Message):
+
+    carbon_text = message.text[8:]
+
+    # Write the code to a file cause carbon-now-cli wants a file.
+    file = "singh/carbon.{}".format(get_carbon_lang())
+    with open(file, "w+") as f:
+        f.write(carbon_text)
+
+    await message.edit_reply("Carbonizing code...")
+    # Do the thing
+    os.system("carbon-now -h -t singh/carbon {}".format(file))
+    # Send the thing
+    await fbot.send_photo(message.chat.id, "/singh/carbon.png")
+    await message.delete()
