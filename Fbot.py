@@ -8,7 +8,8 @@ logger = logging.getLogger(__name__)
 import os
 
 from config import Config
-from pyrogram import Client 
+from pyrogram import Client, __veesion__
+from pyrogram.raw.all import layer
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 class fbot(Client):
@@ -27,4 +28,8 @@ class fbot(Client):
 
 if __name__ == "__main__" :
     fbot().run()
-    logger.info(🚩🚩)
+    LOGGER.info(
+            f"Pyrogram v{__version__} "
+            f"(Layer {layer}) started on @{usr_bot_me.username}. "
+            "Hi."
+        )
