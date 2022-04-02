@@ -7,10 +7,10 @@ from platform import python_version
 from pyrogram import __version__
 
 
-CUSTOM_CMD ="!"
+CUSTOM_CMD = "!"
 START_TIME = datetime.now()
 
-@Client.on_message(filters.command("up", CMD_TRIGGER))
+@Client.on_message(filters.command("up", CUSTOM_CMD))
 async def up(_, message: Message):
     txt = (
         f"-> Current Uptime: `{str(datetime.now() - START_TIME).split('.')[0]}`\n"
