@@ -21,7 +21,7 @@ class fbot(Client):
             api_hash = Config.API_HASH,
             workers = 20,
             plugins = dict(
-                root="Plugins"
+                root="plugins"
             )
         )
 
