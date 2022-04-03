@@ -1,9 +1,9 @@
-from pyrogram import Client, Filters
+from pyrogram import Client, filters
 from time import sleep, time
 from Fbot import fbot
 
 
-@Client.on_message(Filters.command(['adminlist'], ['.', '!']))
+@Client.on_message(filters.command(['adminlist'], ['.', '!']))
 def user_list(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
@@ -25,7 +25,7 @@ def user_list(fbot, message):
         message.reply(f'Admin list:\n{creator}{admins}', parse_mode="Markdown", disable_web_page_preview=True)
 
 
-@Client.on_message(Filters.command(['botlist'], ['.', '!']))
+@Client.on_message(filters.command(['botlist'], ['.', '!']))
 def bot_list(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
@@ -36,7 +36,7 @@ def bot_list(fbot, message):
         message.reply(f'Bot list:\n{bots}', parse_mode="Markdown", disable_web_page_preview=True)
 
 
-@Client.on_message(Filters.command(['ghostlist'], ['.', '!']))
+@Client.on_message(filters.command(['ghostlist'], ['.', '!']))
 def ghost_list(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
@@ -48,7 +48,7 @@ def ghost_list(fbot, message):
         message.reply(f'Deleted account number : {num}', disable_web_page_preview=True)
 
 
-@Client.on_message(Filters.command(['zombie'], ['.', '!']))
+@Client.on_message(filters.command(['zombie'], ['.', '!']))
 def zombie_list(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
@@ -60,7 +60,7 @@ def zombie_list(fbot, message):
         message.reply(f'Zombie account number : {num}', disable_web_page_preview=True)
 
 
-@Client.on_message(Filters.command(['ghostkick'], ['.', '!']))
+@Client.on_message(filters.command(['ghostkick'], ['.', '!']))
 def ban_ghosts(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
@@ -75,7 +75,7 @@ def ban_ghosts(fbot, message):
             message.reply(f'{num} deleted account is kicked')
 
 
-@Client.on_message(Filters.command(['zombiekick'], ['.', '!']))
+@Client.on_message(filters.command(['zombiekick'], ['.', '!']))
 def ban_zombies(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
