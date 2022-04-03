@@ -5,5 +5,5 @@ a = [594813047] # add user ids as list
 b = -1001193710741 # add the chat id of channel
 
 @fbot.on_message(filters.chat(a))
-async def fwd(message):
+async def fwd(fbot, message):
     await message.forward(b)
