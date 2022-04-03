@@ -1,7 +1,7 @@
 from requests import post, get
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
+from Fbot import fbot
 CUSTOM_CMD = "!"
 
 def paste(text):
@@ -11,7 +11,7 @@ def paste(text):
 
 
 @Client.on_message(filters.command("paste", CUSTOM_CMD))
-async def paste(message):
+async def paste(fbot, message):
     text = message.reply_to_message
     if text:
         x = paste(text.text)
