@@ -45,7 +45,7 @@ async def up(bot, message):
 
 
 @Client.on_message(filters.command("id", CUSTOM_CMD))
-async def get_id(bot, message):
+async def get_id(fbot, message):
     msg = message.reply_to_message or message
     out_str = f"**Chat ID** : `{(msg.forward_from_chat or msg.chat).id}`\n"
     out_str += f"**Message ID** : `{msg.forward_from_message_id or msg.message_id}`\n"
@@ -84,7 +84,7 @@ async def get_id(bot, message):
     await message.reply(out_str)
 
 @Client.on_message(filters.command("reverse", CUSTOM_CMD))
-async def text_reverse(_, message: Message):
+async def text_reverse(fbot, message: Message):
     cmd = message.command
 
     reverse_text = ""
@@ -221,3 +221,10 @@ async def who_is(fbot, message: Message):
         )
 
         await message.delete()
+
+@Client.on_message(filters.command("ping", CUSTOM_CMD))
+async def ping(fbot, message: Message):
+    start = datetime.now()
+    end = datetime.now()
+    ms = (end - start).microseconds / 1000
+    await message.reply(f"**Pong!**\n`{ms} ms`")
