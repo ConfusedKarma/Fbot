@@ -12,7 +12,7 @@ def paste(text):
 
 
 @Client.on_message(filters.command("start", CUSTOM_CMD)
-def pastex(_, message):
+def pastex(message):
     text = message.reply_to_message
     if text:
         x = paste(text.text)
