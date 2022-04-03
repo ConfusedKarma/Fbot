@@ -14,7 +14,7 @@ async def paste(text, message):
     text = message.reply_to_message
     if text:
         x = paste(text, message)
-        message.reply(x,
+        await message.reply(x,
                       reply_markup=InlineKeyboardMarkup(
                           [[InlineKeyboardButton("Open", url=x)]]),
                       disable_web_page_preview=True)
