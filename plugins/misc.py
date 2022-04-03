@@ -113,7 +113,6 @@ WHOIS = (
     "Last Name: `{last_name}`\n"
     "Username: `{username}`\n"
     "Last Online: `{last_online}`\n"
-    "Common Groups: `{common_groups}`\n"
     "════════════════\n"
     "Bio:\n{bio}"
 )
@@ -127,7 +126,6 @@ WHOIS_PIC = (
     "Last Name: `{last_name}`\n"
     "Username: `{username}`\n"
     "Last Online: `{last_online}`\n"
-    "Common Groups: `{common_groups}`\n"
     "════════════════\n"
     "Profile Pics: `{profile_pics}`\n"
     "Last Updated: `{profile_pic_update}`\n"
