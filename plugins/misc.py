@@ -8,7 +8,7 @@ from datetime import datetime
 from platform import python_version
 from pyrogram import __version__
 
-from Fbot import fbot
+from search_engine_parser import GoogleSearch
 
 CUSTOM_CMD = "!"
 START_TIME = datetime.now()
@@ -64,19 +64,31 @@ async def get_id(bot, message):
     await message.reply(out_str)
 
 
-@Client.on_message(filters.command("carbon", CUSTOM_CMD))
-async def carbon_test(_, message: Message):
-
-    carbon_text = message.text[8:]
-
-    # Write the code to a file cause carbon-now-cli wants a file.
-    file = "singh/carbon"
-    with open(file, "w+") as f:
-        f.write(carbon_text)
-
-    await message.edit_reply("Carbonizing code...")
-    # Do the thing
-    os.system("carbon-now -h -t singh/carbon {}".format(file))
-    # Send the thing
-    await fbot.send_photo(message.chat.id, "/singh/carbon.png")
+@Client.on_message(filters.command("gs", CUSTOM_CMD))
+async def gs(message: Message):
+    query = message.filtered_input_str
+    await message.reply(f"**Googling** for `{query}` ...")
     await message.delete()
+    if message.reply_to_message:
+        query = message.reply_to_message.text
+    if not query:
+        await message.reply("Give a query or reply to a message to google!")
+        return
+    try:
+        g_search = GoogleSearch()
+        gresults = await g_search.async_search(query, page)
+    except Exception as e:
+        await message.err(e)
+        return
+    output = ""
+        try:
+            title = gresults["titles"][i].replace("\n", " ")
+            link = gresults["links"][i]
+            desc = gresults["descriptions"][i]
+            output += f"[{title}]({link})\n"
+            output += f"`{desc}`\n\n"
+        except (IndexError, KeyError):
+            break
+    output = f"**Google Search:**\n`{query}`\n\n**Results:**\n{output}"
+    await message.reply_or_send_as_file(text=output, caption=query,
+                                       disable_web_page_preview=True)
