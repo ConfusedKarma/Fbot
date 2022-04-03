@@ -8,7 +8,11 @@ from datetime import datetime
 from platform import python_version
 from pyrogram import __version__
 
-from search_engine_parser import GoogleSearch
+import asyncio
+
+import humanize
+
+from Fbot import bot
 
 CUSTOM_CMD = "!"
 START_TIME = datetime.now()
@@ -64,31 +68,12 @@ async def get_id(bot, message):
     await message.reply(out_str)
 
 
-@Client.on_message(filters.command("gs", CUSTOM_CMD))
-async def gs(message: Message):
-    query = message.filtered_input_str
-    await message.reply(f"**Googling** for `{query}` ...")
+@Client.on_message(filters.command("upload", CUSTOM_CMD))
+async def upload(fbot, message):
+    if len(message.command) > 1:
+        await fbot.send_document('self', message.command[1], progress=progress_callback, progress_args=(fbot, message))
+    else:
+        await message.reply('No path provided.')
+        await asyncio.sleep(3)
+
     await message.delete()
-    if message.reply_to_message:
-        query = message.reply_to_message.text
-    if not query:
-        await message.reply("Give a query or reply to a message to google!")
-        return
-    try:
-        g_search = GoogleSearch()
-        gresults = await g_search.async_search(query, page)
-    except Exception as e:
-        await message.err(e)
-        return
-    output = ""
-    try:
-            title = gresults["titles"][i].replace("\n", " ")
-            link = gresults["links"][i]
-            desc = gresults["descriptions"][i]
-            output += f"[{title}]({link})\n"
-            output += f"`{desc}`\n\n"
-    except (IndexError, KeyError):
-            break
-    output = f"**Google Search:**\n`{query}`\n\n**Results:**\n{output}"
-    await message.reply_or_send_as_file(text=output, caption=query,
-                                       disable_web_page_preview=True)
