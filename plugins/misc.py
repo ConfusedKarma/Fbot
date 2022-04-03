@@ -155,14 +155,6 @@ def LastOnline(user: User):
         )
 
 
-async def GetCommon(fbot, get_user):
-    common = await fbot.send(
-        functions.messages.GetCommonChats(
-            user_id=await fbot.resolve_peer(get_user), max_id=0, limit=0
-        )
-    )
-    return common
-
 
 def FullName(user: User):
     return user.first_name + " " + user.last_name if user.last_name else user.first_name
@@ -198,7 +190,6 @@ async def who_is(fbot, message: Message):
     bio = user_details.bio
     user_pic = await fbot.get_profile_photos(user.id)
     pic_count = await fbot.get_profile_photos_count(user.id)
-    common = await GetCommon(fbot, user.id)
 
     if not user.photo:
         await message.reply(
@@ -209,7 +200,6 @@ async def who_is(fbot, message: Message):
                 last_name=user.last_name if user.last_name else "",
                 username=user.username if user.username else "",
                 last_online=LastOnline(user),
-                common_groups=len(common.chats),
                 bio=bio if bio else "`No bio set up.`",
             ),
             disable_web_page_preview=True,
@@ -226,7 +216,6 @@ async def who_is(fbot, message: Message):
                 username=user.username if user.username else "",
                 last_online=LastOnline(user),
                 profile_pics=pic_count,
-                common_groups=len(common.chats),
                 bio=bio if bio else "`No bio set up.`",
                 profile_pic_update=ProfilePicUpdate(user_pic),
             ),
