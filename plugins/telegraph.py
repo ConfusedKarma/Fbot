@@ -4,7 +4,7 @@ from Fbot import fbot
 
 CUSTOM_CMD = "!"
 
-Client.on_message(filters.command("tlg", CUSTOM_CMD))
+@Client.on_message(filters.command("tlg", CUSTOM_CMD))
 async def ul(_, message):
     reply = message.reply_to_message
     if reply.media:
