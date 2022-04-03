@@ -1,0 +1,3 @@
+build:
+run:
+  worker: bash Fbot.py
