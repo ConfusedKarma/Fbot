@@ -12,7 +12,7 @@ import asyncio
 
 import humanize
 
-from Fbot import bot
+from Fbot import fbot
 
 CUSTOM_CMD = "!"
 START_TIME = datetime.now()
