@@ -1,6 +1,6 @@
 from pyrogram import filters
 from Fbot import fbot
-from config import CHANNEL_ID, AUTH_USERS
+from config import Config
 
 #a = [594813047] # add user ids as list
 #b = -1001142186094 # add the chat id of channel
