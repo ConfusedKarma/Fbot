@@ -1,4 +1,5 @@
 import os
+import asyncio
 import io
 import sys
 import traceback
@@ -7,10 +8,6 @@ from pyrogram.types import Message
 from datetime import datetime
 from platform import python_version
 from pyrogram import __version__
-
-import asyncio
-
-import humanize
 
 from Fbot import fbot
 
@@ -67,17 +64,19 @@ async def get_id(bot, message):
         out_str += f"🗃️**File ID:** `{file_id}`"
     await message.reply(out_str)
 
-async def progress_callback(current, total, fbot, message: Message):
-    if int((current / total) * 100) % 25 == 0:
-        await message.edit(f"{humanize.naturalsize(current)} / {humanize.naturalsize(total)}")
+@Client.on_message(filters.command("reverse", CUSTOM_CMD))
+async def text_reverse(_, message: Message):
+    cmd = message.command
 
+    reverse_text = ""
+    if len(cmd) > 1:
+        reverse_text = " ".join(cmd[1:])
+    elif message.reply_to_message and len(cmd) == 1:
+        reverse_text = message.reply_to_message.text
+    elif not message.reply_to_message and len(cmd) == 1:
+        await message.reply("`Give me something to reverse`"[::-1])
+        await asyncio.sleep(2)
+        await message.delete()
+        return
 
-@Client.on_message(filters.command("upload", CUSTOM_CMD))
-async def upload(fbot, message):
-    if len(message.command) > 1:
-        await fbot.send_document('self', message.command[1], progress=progress_callback, progress_args=(fbot, message))
-    else:
-        await message.reply('No path provided.')
-        await asyncio.sleep(3)
-
-    await message.delete()
+    await message.reply(reverse_text[::-1])
