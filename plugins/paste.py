@@ -1,5 +1,4 @@
 from requests import post, get
-from nksama import bot
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
