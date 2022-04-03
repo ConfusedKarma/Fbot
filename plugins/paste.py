@@ -11,8 +11,8 @@ def paste(text):
     return f"https://spaceb.in/{res.json()['payload']['id']}"
 
 
-@Client.on_message(filters.command("start", CUSTOM_CMD)
-def pastex(message):
+@Client.on_message(filters.command("paste", CUSTOM_CMD))
+async def paste(message):
     text = message.reply_to_message
     if text:
         x = paste(text.text)
