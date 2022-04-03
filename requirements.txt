@@ -1,3 +1,5 @@
 pyrogram
 TgCrypto
 html_telegraph_poster
+mediainfo
+ffmpeg
