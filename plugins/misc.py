@@ -234,7 +234,7 @@ async def ping(fbot, message: Message):
 
 @Client.on_message(filters.command("upl", CUSTOM_CMD))
 async def upload_file(fbot, message):
-    if not os.path.exists
+    if not os.path.exists()
         await message.reply("File not found!")
         return
     await message.reply("Processing ...")
