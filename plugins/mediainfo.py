@@ -52,7 +52,7 @@ def safe_filename(path_):
 async def mediainfo(message: Message):
     reply = message.reply_to_message
     if not reply:
-        process = await message.edit("`Processing`")
+        process = await message.reply("`Processing`")
         url_ = message.text.split(" ",1)[1]
         output_ = await runcmd(f'mediainfo "{url_}"')
         out = None
@@ -69,7 +69,7 @@ async def mediainfo(message: Message):
         link = post_to_telegraph("MediaInfo", body_text)
         if message.client.is_bot:
             markup = InlineKeyboardMarkup([[InlineKeyboardButton(text="Link", url=link)]])
-            await process.edit_reply("<b>MEDIA INFO</b>", reply_markup=markup)
+            await process.reply("<b>MEDIA INFO</b>", reply_markup=markup)
         else:
             await message.reply(f"<b>MEDIA INFO:  [Link]({link})</b>")
     else:
@@ -105,7 +105,7 @@ async def mediainfo(message: Message):
         link = post_to_telegraph("MediaInfo", body_text)
         if message.client.is_bot:
             markup = InlineKeyboardMarkup([[InlineKeyboardButton(text=file_path, url=link)]])
-            await process.edit_text("<b>MEDIA INFO</b>", reply_markup=markup)
+            await process.reply("<b>MEDIA INFO</b>", reply_markup=markup)
         else:
             await message.reply(f"<b>MEDIA INFO:  [Link]({link})</b>")
         os.remove(file_path)
