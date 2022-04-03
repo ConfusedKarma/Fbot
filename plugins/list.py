@@ -79,7 +79,7 @@ def ban_ghosts(fbot, message):
 def ban_zombies(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
-    if fbot.get_chat_member(message.chat.id, app.get_me().id).status == "creator" or "administrator":
+    if fbot.get_chat_member(message.chat.id, fbot.get_me().id).status == "creator" or "administrator":
         if chat_type != "private":
             num = 0
             for i in fbot.iter_chat_members(message.chat.id):
