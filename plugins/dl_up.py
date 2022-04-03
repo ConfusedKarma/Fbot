@@ -4,7 +4,7 @@ from time import sleep, time
 from Fbot import fbot
 
 
-@Client.on_message(Filters.me & Filters.command(['dl'], ['.', '!']))
+@Client.on_message(filters.command(['dl'], ['.', '!']))
 def download(fbot, message):
     sleep(0.1)
     if message.reply_to_message:
@@ -13,12 +13,12 @@ def download(fbot, message):
             if len(message.text.split()) == 1:
                 file_name = message.reply_to_message.document.file_name
                 if file_name in listdir("./Downloads/"):
-                    message.reply('There is already a file with this name')
+                    message.reply("There is already a file with this name")
                     return
                 fbot.download_media(message.reply_to_message, "./Downloads/{}".format(file_name))
                 end = time()
                 elapsed_time = str(end - start)
-                message.edit('File is downloaded\nElapsed time : {}'.format(elapsed_time))
+                message.edit("File is downloaded\nElapsed time : {}".format(elapsed_time))
                 return
             else:
                 file_name = " ".join(message.text.split()[1:]) + ".txt"
@@ -28,7 +28,7 @@ def download(fbot, message):
                 app.download_media(message.reply_to_message, file_name="./Downloads/{}".format(file_name))
                 end = time()
                 elapsed_time = str(end - start)
-                message.reply('File is downloaded\nFile name : {}\nElapsed time : {}'.format(file_name,
+                message.reply("File is downloaded\nFile name : {}\nElapsed time : {}".format(file_name,
                                                                                             elapsed_time))
                 return
         if message.reply_to_message.video:
@@ -43,7 +43,7 @@ def download(fbot, message):
                 app.download_media(message.reply_to_message, file_name="./Downloads/{}".format(file_name.format(num)))
                 end = time()
                 elapsed_time = str(end - start)
-                message.reply('Video is downloaded\nFile name : {}\nElapsed time : {}'.format(file_name,
+                message.reply("Video is downloaded\nFile name : {}\nElapsed time : {}".format(file_name,
                                                                                              elapsed_time))
                 return
             else:
@@ -54,7 +54,7 @@ def download(fbot, message):
                 fbot.download_media(message.reply_to_message, file_name="./Downloads/{}".format(file_name))
                 end = time()
                 elapsed_time = str(end - start)
-                message.reply('Video is downloaded\nFile name : {}\nElapsed time : {}'.format(file_name,
+                message.reply("Video is downloaded\nFile name : {}\nElapsed time : {}".format(file_name,
                                                                                              elapsed_time))
                 return
         if message.reply_to_message.audio:
@@ -69,7 +69,7 @@ def download(fbot, message):
                 fbot.download_media(message.reply_to_message, file_name="./Downloads/{}".format(file_name.format(num)))
                 end = time()
                 elapsed_time = str(end - start)
-                message.reply('Music is downloaded\nFile name : {}\nElapsed time : {}'.format(file_name,
+                message.reply("Music is downloaded\nFile name : {}\nElapsed time : {}".format(file_name,
                                                                                              elapsed_time))
                 return
             else:
@@ -80,14 +80,13 @@ def download(fbot, message):
                 fbot.download_media(message.reply_to_message, file_name="./Downloads/{}".format(file_name))
                 end = time()
                 elapsed_time = str(end - start)
-                message.reply('Music is downloaded\nFile name : {}\nElapsed time : {}'.format(file_name,
+                message.reply("Music is downloaded\nFile name : {}\nElapsed time : {}".format(file_name,
                                                                                              elapsed_time))
                 return
     else:
-        message.reply('You must reply to message')
+        message.reply("You must reply to message")
 
-
-@Client.on_message(Filters.me & Filters.command(['upl'], ['.', '!']))
+@Client.on_message(filters.command(['upl'], ['.', '!']))
 def upload(fbot, message):
     file_name = " ".join(message.text.split()[1:])
     if file_name in listdir("./Downloads/"):
@@ -98,7 +97,7 @@ def upload(fbot, message):
         fbot.send_message(message.chat.id, f"Elapsed time : {elapsed}")
 
 
-@Client.on_message(Filters.me & Filters.command(['rm'], ['.', '!']))
+@Client.on_message(filters.command(['rm'], ['.', '!']))
 def remove_file(fbot, message):
     if len(message.text.split()) == 2:
         num = 1
@@ -107,7 +106,7 @@ def remove_file(fbot, message):
             for i in listdir("./Downloads/"):
                 if num == int(file):
                     remove("./Downloads/{}".format(i))
-                    message.reply('Removed successfully')
+                    message.reply("Removed successfully")
                     return
                 else:
                     num += 1
@@ -122,4 +121,4 @@ def download_list(fbot, message):
         downloads += f"📂 [{num}] {i}\n"
         num += 1
     message.reply("Download list:\n\n<u>                File names                   </u>.        \n"
-                 + downloads, parse_mode='HTML') if num != 1 else message.reply('You don't have a file')
+                 + downloads, parse_mode='HTML') if num != 1 else message.reply("You don't have a file")
