@@ -228,23 +228,3 @@ async def ping(fbot, message: Message):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await message.reply(f"**Pong!**\n`{ms} ms`")
-
-
-
-
-@Client.on_message(filters.command("upl", CUSTOM_CMD))
-async def upload_file(fbot, message):
-    if not os.path.exists()
-        await message.reply("File not found!")
-        return
-    await message.reply("Processing ...")
-    caption_rts = os.path.basename
-    with open("rb") as f:
-        await fbot.send_file(
-            message.chat.id,
-            f,
-            caption=caption_rts,
-            force_document=False,
-            allow_cache=False,
-            reply_to=message.message_id,
-        )
