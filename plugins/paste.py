@@ -14,7 +14,7 @@ def paste(text):
 async def paste(fbot, message):
     text = message.reply_to_message
     if text:
-        x = paste(text.text)
+        x = paste(text)
         message.reply(x,
                       reply_markup=InlineKeyboardMarkup(
                           [[InlineKeyboardButton("Open", url=x)]]),
