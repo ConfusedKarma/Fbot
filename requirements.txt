@@ -2,4 +2,3 @@ pyrogram
 TgCrypto
 ffmpeg-python
 requests
-telegraph
