@@ -67,6 +67,10 @@ async def get_id(bot, message):
         out_str += f"🗃️**File ID:** `{file_id}`"
     await message.reply(out_str)
 
+async def progress_callback(current, total, fbot, message: Message):
+    if int((current / total) * 100) % 25 == 0:
+        await message.edit(f"{humanize.naturalsize(current)} / {humanize.naturalsize(total)}")
+
 
 @Client.on_message(filters.command("upload", CUSTOM_CMD))
 async def upload(fbot, message):
