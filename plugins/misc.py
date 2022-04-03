@@ -105,7 +105,7 @@ async def text_reverse(_, message: Message):
 
 
 WHOIS = (
-    '**WHO IS "{full_name}"?**\n'
+    '**"{full_name}"**\n'
     "[Link to profile](tg://user?id={user_id})\n"
     "════════════════\n"
     "UserID: `{user_id}`\n"
@@ -118,7 +118,7 @@ WHOIS = (
 )
 
 WHOIS_PIC = (
-    '**WHO IS "{full_name}"?**\n'
+    '**"{full_name}"**\n'
     "[Link to profile](tg://user?id={user_id})\n"
     "════════════════\n"
     "UserID: `{user_id}`\n"
