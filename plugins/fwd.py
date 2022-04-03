@@ -2,11 +2,10 @@ from pyrogram import filters
 from Fbot import fbot
 from config import Config
 
-#a = [594813047] # add user ids as list
+a = [594813047] # add user ids as list
 #b = -1001142186094 # add the chat id of channel
-AUTH_USERS = Config.AUTH_USERS
 CHANNEL_ID = Config.CHANNEL_ID
 
-@fbot.on_message(filters.chat(AUTH_USERS))
+@fbot.on_message(filters.chat(a))
 async def fwd(fbot, message):
     await message.forward(Config.CHANNEL)
