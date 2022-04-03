@@ -1,5 +1,5 @@
 pyrogram
 TgCrypto
-ffmpeg
+ffmpeg-python
 requests
 telegraph
