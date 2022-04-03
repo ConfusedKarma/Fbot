@@ -81,7 +81,7 @@ async def gs(message: Message):
         await message.err(e)
         return
     output = ""
-        try:
+    try:
             title = gresults["titles"][i].replace("\n", " ")
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
