@@ -232,8 +232,20 @@ async def ping(fbot, message: Message):
 
 
 
-@Client.on_message(filters.command("logs", CUSTOM_CMD))
-async def upload_logs(fbot, message):
-    input_str = "logs/fbot.log"
+@Client.on_message(filters.command("upl", CUSTOM_CMD))
+async def upload_file(fbot, message):
+    input_str = message.get_args()
+    if not os.path.exists(input_str):
+        await message.reply("File not found!")
+        return
+    await message.reply("Processing ...")
+    caption_rts = os.path.basename(input_str)
     with open(input_str, "rb") as f:
-        await fbot.send_file(message.chat.id, f, reply_to=message.message_id)
+        await fbot.send_file(
+            message.chat.id,
+            f,
+            caption=caption_rts,
+            force_document=False,
+            allow_cache=False,
+            reply_to=message.message_id,
+        )
