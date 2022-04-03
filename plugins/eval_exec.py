@@ -25,7 +25,6 @@ def ReplyCheck(message: Message):
 
 @Client.on_message(filters.command("eval", CUSTOM_CMD))
 async def evaluation_func(fbot, message: Message):
-    status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
 
     reply_to_id = message.message_id
@@ -73,9 +72,9 @@ async def evaluation_func(fbot, message: Message):
             reply_to_message_id=ReplyCheck(message),
         )
         os.remove("eval.txt")
-        await status_message.delete()
+        await message.delete()
     else:
-        await status_message.reply(final_output)
+        await message.reply(final_output)
 
 
 async def aexec(code, b, m, r, d):
