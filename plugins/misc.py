@@ -7,14 +7,14 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, User
 
 from pyrogram.raw import functions
-from pyrogram.errors import PeerIdInvalid, FloodWait, RPCError
+from pyrogram.errors import PeerIdInvalid
 from datetime import datetime
 from time import sleep
 
 from platform import python_version
 from pyrogram import __version__
 
-from Fbot import fbot, logging
+from Fbot import fbot
 
 
 def ReplyCheck(message: Message):
@@ -228,19 +228,3 @@ async def ping(fbot, message: Message):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await message.reply(f"**Pong!**\n`{ms} ms`")
-
-@Client.on_message(filters.command("log", CUSTOM_CMD))
-async def _send_log(fbot, message):
-  with open('log.txt', 'rb') as f:
-    try:
-      await fbot.send_document(
-        message.chat.id,
-        document=f,
-        file_name=f.name,
-        reply_to_message_id=message.message_id
-        )
-      logging.info(f'Log file sent to {message.from_user.id}')
-    except FloodWait as e:
-      sleep(e.x)
-    except RPCError as e:
-      message.reply_text(e, quote=True)
