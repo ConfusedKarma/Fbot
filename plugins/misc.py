@@ -228,3 +228,14 @@ async def ping(fbot, message: Message):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await message.reply(f"**Pong!**\n`{ms} ms`")
+
+@Client.on_message(filters.command("log", CUSTOM_CMD))
+async def _send_log(fbot, message):
+  with open('log.txt', 'rb') as f:
+    try:
+      fbot.send_document(
+        message.chat.id,
+        document=f,
+        file_name=f.name,
+        reply_to_message_id=message.message_id
+        )
