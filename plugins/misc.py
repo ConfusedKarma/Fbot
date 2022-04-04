@@ -233,7 +233,7 @@ async def ping(fbot, message: Message):
 async def _send_log(fbot, message):
   with open('log.txt', 'rb') as f:
     try:
-      fbot.send_document(
+      await fbot.send_document(
         message.chat.id,
         document=f,
         file_name=f.name,
