@@ -9,6 +9,7 @@ import sys
 import traceback
 from pyrogram import Client, filters
 
+CUSTOM_CMD = "!"
 MAX_MESSAGE_LENGTH = 4096
 
 @Client.on_message(filters.command("eval", CUSTOM_CMD))
