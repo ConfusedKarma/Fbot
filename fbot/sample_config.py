@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv("config.env")
 
 class Config(object):
       BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
