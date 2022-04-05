@@ -4,7 +4,7 @@ import os
 # the logging things
 import logging
 
-from pyrobot.sample_config import Config
+from fbot.sample_config import Config
 
 
 logging.basicConfig(
