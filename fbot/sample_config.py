@@ -14,3 +14,11 @@ class Config(object):
       AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "").split())
       #download location
       DOWNLOAD_LOCATION = "./DOWNLOADS"
+
+class Production(Config):
+    LOGGER = False
+
+
+class Development(Config):
+    LOGGER = True
+
