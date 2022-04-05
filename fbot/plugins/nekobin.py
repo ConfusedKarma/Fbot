@@ -21,7 +21,6 @@ async def nekobin(c: Client, m: Message):
 
         url = "https://nekobin.com/api/documents"
         r = await http.post(url, json={"content": mean})
-        url = f"https://nekobin.com/{r.json()['result']['key']}"
         await m.reply_text(url, disable_web_page_preview=True)
     else:
         await m.reply_text("Reply to Document or Text File")
