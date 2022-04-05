@@ -14,7 +14,7 @@ from time import sleep
 from platform import python_version
 from pyrogram import __version__
 
-from Fbot import fbot
+from fbot import fbot, CUSTOM_CMD
 
 
 def ReplyCheck(message: Message):
@@ -30,7 +30,6 @@ def ReplyCheck(message: Message):
 
 
 
-CUSTOM_CMD = "!"
 START_TIME = datetime.now()
 
 @Client.on_message(filters.command("up", CUSTOM_CMD))
