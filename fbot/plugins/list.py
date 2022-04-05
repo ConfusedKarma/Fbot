@@ -32,8 +32,7 @@ def bot_list(fbot, message):
     if chat_type != "private":
         bots = ""
         for i in fbot.get_chat_members(message.chat.id, filter="bots"):
-            bots += " 🤖 -> @{}\n".format(i.user.username) if i.user.username \
-                        else " ⛑ -> [{}](tg://user?id={})\n".format(
+            bots += " 🤖 -> @{}\n".[{}](tg://user?id={})\n".format(
                             i.user.first_name, i.user.id
                         )
         message.reply(f'Bot list:\n{bots}', parse_mode="Markdown", disable_web_page_preview=True)
