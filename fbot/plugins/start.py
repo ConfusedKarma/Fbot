@@ -1,9 +1,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from fbot import CUSTOM_CMD
 
 
 START_TEXT = """Hello {} #fkoff"""
-CUSTOM_CMD = "!"
 
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Owner', url='https://telegram.me/refundisillegal')]])
 
