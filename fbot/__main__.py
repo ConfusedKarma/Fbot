@@ -1,4 +1,4 @@
-from .Fbot import fbot
+from .fbot import fbot
 from fbot import LOGGER
 from pyrogram import __version__
 
