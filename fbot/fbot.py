@@ -1,3 +1,4 @@
+from pyrogram import Client
 from fbot import (
     APP_ID,
     API_HASH,
