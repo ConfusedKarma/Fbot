@@ -1,9 +1,9 @@
 from pyrogram import Client, filters
 from time import sleep, time
-from Fbot import fbot
+from fbot import fbot, CUSTOM_CMD
 
 
-@Client.on_message(filters.command(['adminlist'], ['.', '!']))
+@Client.on_message(filters.command("adminlist", CUSTOM_CMD))
 def user_list(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
@@ -25,7 +25,7 @@ def user_list(fbot, message):
         message.reply(f'Admin list:\n{creator}{admins}', parse_mode="Markdown", disable_web_page_preview=True)
 
 
-@Client.on_message(filters.command(['botlist'], ['.', '!']))
+@Client.on_message(filters.command("botlist", CUSTOM_CMD))
 def bot_list(fbot, message):
     sleep(0.1)
     chat_type = message.chat.type
