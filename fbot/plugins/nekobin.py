@@ -1,7 +1,11 @@
-from consts import http
+import httpx
 from fbot import CUSTOM_CMD
 from pyrogram import Client, filters
 from pyrogram.types import Message
+
+timeout = httpx.Timeout(40, pool=None)
+
+http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
 @Client.on_message(filters.command("paste", CUSTOM_CMD))
