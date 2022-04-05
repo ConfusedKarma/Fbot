@@ -18,7 +18,7 @@ APP_ID = Config.APP_ID
 API_HASH = Config.API_HASH
 BOT_TOKEN = Config.BOT_TOKEN
 CUSTOM_CMD = Config.CUSTOM_CMD
-AUTH_USERS = Config.AUTH_USERS
+AUTH_USERS = list(set(AUTH_USERS))
 DOWNLOAD_LOCATION = Config.DOWNLOAD_LOCATION
 # create download directory, if not exist
 if not os.path.isdir(DOWNLOAD_LOCATION):
