@@ -26,6 +26,6 @@ async def hastebin(c: Client, m: Message):
         url = f"https://hastebin.com/{r.json()['key']}"
         end = datetime.now()
         ms = (end - start).seconds
-        await m.reply_text("[Here You Go...]({}) in {} seconds".format(url, ms, disable_web_page_preview=True))
+        await m.reply_text("[HASTEBIN]({}) in {} seconds".format(url, ms, disable_web_page_preview=True))
     else:
         await m.reply_text("Reply to Document or Text File")
