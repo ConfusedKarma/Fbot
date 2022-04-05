@@ -2,3 +2,4 @@ pyrogram
 TgCrypto
 ffmpeg-python
 aiohttp
+python-dotenv
