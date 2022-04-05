@@ -1,4 +1,4 @@
-from typing import dict
+from typing import Dict
 
 from fbot import (
     APP_ID,
