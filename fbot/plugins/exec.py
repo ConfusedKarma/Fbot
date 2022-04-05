@@ -6,9 +6,7 @@ import traceback
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from Fbot import fbot
-
-CUSTOM_CMD = "!"
+from fbot import fbot, CUSTOM_CMD
 
 
 def ReplyCheck(message: Message):
