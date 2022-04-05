@@ -3,4 +3,3 @@ TgCrypto
 ffmpeg-python
 aiohttp
 python-dotenv
-httpx[http2]
