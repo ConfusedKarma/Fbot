@@ -1,5 +1,5 @@
 #from pyrogram import filters
-#from Fbot import fbot
+#from fbot import fbot
 #from config import Config
 
 #a = [594813047] # add user ids as list
