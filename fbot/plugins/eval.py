@@ -8,13 +8,13 @@ import io
 import sys
 import traceback
 from pyrogram import Client, filters
-from fbot import CUSTOM_CMD, fbot
+from fbot import CUSTOM_CMD
 
 
 MAX_MESSAGE_LENGTH = 4096
 
 @Client.on_message(filters.command("eval", CUSTOM_CMD))
-async def eval(fbot, client, message):
+async def eval(client, message):
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
 
