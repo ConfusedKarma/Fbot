@@ -19,7 +19,7 @@ def mdis_k(urlx):
 
 
 def mdisk(url):
-    check = re.findall(r"\https?://.*mdisk\S+", url)
+    check = re.findall(r"\bhttps?://.*mdisk\S+", url)
     if not check:
         textx = f"Invalid mdisk url"
         return textx
