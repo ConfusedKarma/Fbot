@@ -1,4 +1,4 @@
-import re
+import regex as re
 import cloudscraper
 
 from pyrogram import Client, filters
