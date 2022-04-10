@@ -57,3 +57,4 @@ async def execution(fbot, message: Message):
         os.remove("exec.text")
     else:
         await message.reply_text(OUTPUT)
+        await message.delete()
