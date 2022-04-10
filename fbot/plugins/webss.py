@@ -3,14 +3,15 @@ from httpx import HTTPError
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from fbot import CUSTOM_CMD
+from fbot import CUSTOM_CMD, AUTH_USERS
+from fbot.sample_config import Config
 
 
 timeout = httpx.Timeout(40, pool=None)
 
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
-@Client.on_message(filters.command("ss", CUSTOM_CMD))
+@Client.on_message(filters.command("ss", CUSTOM_CMD) & filters.user(Config.AUTH_USERS))
 async def prints(c: Client, message: Message):
     msg = message.text
     the_url = msg.split(" ", 1)
