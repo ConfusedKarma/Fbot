@@ -8,7 +8,7 @@ import io
 import sys
 import traceback
 from pyrogram import Client, filters
-from fbot import, fbot, CUSTOM_CMD
+from fbot import fbot, CUSTOM_CMD
 
 
 MAX_MESSAGE_LENGTH = 4096
