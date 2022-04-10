@@ -35,7 +35,7 @@ def mdisk(url):
             return textx
 
 
-@Client.on_message(filters.command("mdisk", CUSTOM_CMD) & filters.user(Config.AUTH_USERS) & filters.regex(r"https?://[^\s]+"))
+@Client.on_message(filters.command("mdisk", CUSTOM_CMD) & filters.regex(r"https?://[^\s]+"))
 async def mdik(bot, update):
     url = update.matches[0].group(0)
     bsdk = mdisk(url)
