@@ -56,4 +56,4 @@ async def execution(message: Message):
         )
         os.remove("exec.text")
     else:
-        await message.reply(OUTPUT)
+        await message.reply_text(OUTPUT)
