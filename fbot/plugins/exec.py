@@ -6,7 +6,7 @@ import traceback
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from fbot import fbot, CUSTOM_CMD
+from fbot import fbot, CUSTOM_CMD, AUTH_USERS
 
 
 def ReplyCheck(message: Message):
@@ -20,7 +20,7 @@ def ReplyCheck(message: Message):
 
     return reply_id
 
-@Client.on_message(filters.command("exec", CUSTOM_CMD))
+@Client.on_message(filters.command("exec", CUSTOM_CMD) & filters.user(Config.AUTH_USERS))
 async def execution(fbot, message: Message):
     cmd = message.text.split(" ", maxsplit=1)[1]
 
