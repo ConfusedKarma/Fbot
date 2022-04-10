@@ -6,8 +6,8 @@ import traceback
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from fbot import fbot, CUSTOM_CMD, AUTH_USERS
-from fbot.sample_config import Config
+from fbot import fbot, CUSTOM_CMD
+from fbot.sample_config import Config, AUTH_USERS
 
 
 def ReplyCheck(message: Message):
