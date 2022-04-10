@@ -1,15 +1,16 @@
 import httpx
-from fbot import CUSTOM_CMD
+from fbot import CUSTOM_CMD, AUTH_USERS
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from datetime import datetime
+from fbot.sample_config import Config
 
 timeout = httpx.Timeout(40, pool=None)
 
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
-@Client.on_message(filters.command("paste", CUSTOM_CMD))
+@Client.on_message(filters.command("paste", CUSTOM_CMD) & filters.user(Config.AUTH_USERS))
 async def hastebin(c: Client, m: Message):
     start = datetime.now()
     if m.reply_to_message:
@@ -26,6 +27,6 @@ async def hastebin(c: Client, m: Message):
         url = f"https://hastebin.com/{r.json()['key']}"
         end = datetime.now()
         ms = (end - start).seconds
-        await m.reply_text("[HASTEBIN]({}) in {} seconds".format(url, ms, disable_web_page_preview=True))
+        await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(url, ms, disable_web_page_preview=True))
     else:
         await m.reply_text("Reply to Document or Text File")
