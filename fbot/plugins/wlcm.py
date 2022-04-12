@@ -2,12 +2,13 @@ import asyncio
 from asyncio import sleep
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from fbot.sample_config import Config
 
-WELCOME_CHANNEL = -1001193710741
+WELCOME_CHANNEL = Config.TO_CHANNEL
 
-JOIN_TEXT = """Hello {} Welcome to ChuPeeps"""
+JOIN_TEXT = """Hello {} Welcome to Chat"""
 
-BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('ChuPeeps', url='https://telegram.me/ChuPeeps')]])
+BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Bot Owner', url='https://telegram.me/refundisillegal')]])
 
 
 @Client.on_message(filters.chat(WELCOME_CHANNEL) & filters.new_chat_members)
