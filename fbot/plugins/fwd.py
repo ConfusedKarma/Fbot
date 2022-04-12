@@ -11,7 +11,7 @@ from fbot import fbot, AUTH_USERS, TO_CHANNEL
 
 
 
-@Fbot.on_message(
+@fbot.on_message(
     filters.chat & (
         filters.text
         filters.audio
