@@ -7,3 +7,4 @@ httpx[http2]
 cloudscraper
 requests
 regex
+telepot
