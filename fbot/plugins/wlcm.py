@@ -7,7 +7,7 @@ WELCOME_CHANNEL = -1001193710741
 
 JOIN_TEXT = """Hello {} Welcome to ChuPeeps"""
 
-BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Owner', url='https://telegram.me/refundisillegal'],[InlineKeyboardButton('Owner', url='t.me/ChuPeeps)]]))
+BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Owner', url='https://telegram.me/refundisillegal'],[InlineKeyboardButton('Owner', url='t.me/ChuPeeps))]])
 
 
 @Client.on_message(filters.chat(WELCOME_CHANNEL) & filters.new_chat_members)
