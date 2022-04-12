@@ -1,4 +1,4 @@
-from pyrogram import filters
+from pyrogram import Client, filters
 from fbot import fbot, AUTH_USERS, TO_CHANNEL
 
 #a = [594813047] # add user ids as list
@@ -11,7 +11,7 @@ from fbot import fbot, AUTH_USERS, TO_CHANNEL
 
 
 
-@fbot.on_message(
+@Client.on_message(
     filters.chat & (
         filters.text |
         filters.audio |
