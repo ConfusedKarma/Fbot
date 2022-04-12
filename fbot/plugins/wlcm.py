@@ -1,10 +1,8 @@
 import asyncio
 from asyncio import sleep
 from pyrogram import Client, filters
-from fbot.sample_config import Config
-from fbot import TO_CHANNEL
 
-WELCOME_CHANNEL = Config.TO_CHANNEL
+WELCOME_CHANNEL = -1001193710741
 
 @Client.on_message(filters.chat(WELCOME_CHANNEL) & filters.new_chat_members)
 async def welcome(client, message):
