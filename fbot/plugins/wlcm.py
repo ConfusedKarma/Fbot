@@ -16,7 +16,7 @@ async def welcome(client, message):
         await chat.kick_member(message.from_user.id)
     else:
         await message.reply_text(
-        text=JOIN_TEXT.format(update.from_user.mention),
+        text=JOIN_TEXT.format(message.from_user.mention),
         reply_markup=BUTTONS,
         disable_web_page_preview=True,
         quote=True
