@@ -10,6 +10,6 @@ async def welcome(client, message):
     if message.from_user.is_bot:
         await chat.kick_member(message.from_user.id)
     else:
-        await message.reply_text(" Hi %(message.from_user.first_name)s , 🎉 Welcome to chat! 🎉", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="🔗  Join @ChuPeeps  🔗",url="t.me/ChuPeeps")],[InlineKeyboardButton(text="🚩  Bot Owner  🚩",url ="t.me/refundisillegal")]]))
+        await message.reply_text(" Hi (message.from_user.mention) , 🎉 Welcome to chat! 🎉", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="🔗  Join @ChuPeeps  🔗",url="t.me/ChuPeeps")],[InlineKeyboardButton(text="🚩  Bot Owner  🚩",url ="t.me/refundisillegal")]]))
         await asyncio.sleep(60)
         await message.delete()
