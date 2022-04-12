@@ -13,19 +13,19 @@ from fbot import fbot, AUTH_USERS, TO_CHANNEL
 
 @fbot.on_message(
     filters.chat & (
-        filters.text
-        filters.audio
-        filters.document
-        filters.photo
-        filters.sticker
-        filters.video
-        filters.animation
-        filters.voice
-        filters.video_note
-        filters.contact
-        filters.location
-        filters.venue
-        filters.poll
+        filters.text |
+        filters.audio |
+        filters.document |
+        filters.photo |
+        filters.sticker |
+        filters.video |
+        filters.animation |
+        filters.voice |
+        filters.video_note |
+        filters.contact |
+        filters.location |
+        filters.venue |
+        filters.poll |
         filters.game
     )
 )
