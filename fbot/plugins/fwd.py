@@ -11,7 +11,7 @@ from fbot.sample_config import Config
 
 
 
-@Client.on_message(filters.chat(Config.AUTH_USERS))
+@Client.on_message(filters.chat(Config.AUTH_USERS) & ~filters.command("start"))
 async def autopost(bot, update):
     if len(AUTH_USERS) == 0 or len(TO_CHANNEL) == 0 or update.chat.id not in AUTH_USERS:
         return
