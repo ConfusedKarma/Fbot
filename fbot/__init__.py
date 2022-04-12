@@ -20,6 +20,7 @@ BOT_TOKEN = Config.BOT_TOKEN
 CUSTOM_CMD = Config.CUSTOM_CMD
 AUTH_USERS = list(Config.AUTH_USERS)
 AUTH_USERS = list(set(AUTH_USERS))
+TO_CHANNEL = list(Config.TO_CHANNEL)
 DOWNLOAD_LOCATION = Config.DOWNLOAD_LOCATION
 # create download directory, if not exist
 if not os.path.isdir(DOWNLOAD_LOCATION):
