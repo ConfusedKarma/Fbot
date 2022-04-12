@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from fbot import fbot, AUTH_USERS, TO_CHANNEL
-
+from fbot.sample_config import Config
 #a = [594813047] # add user ids as list
 #b = -1001142186094 # add the chat id
 
@@ -11,24 +11,7 @@ from fbot import fbot, AUTH_USERS, TO_CHANNEL
 
 
 
-@Client.on_message(
-    filters.chat & (
-        filters.text |
-        filters.audio |
-        filters.document |
-        filters.photo |
-        filters.sticker |
-        filters.video |
-        filters.animation |
-        filters.voice |
-        filters.video_note |
-        filters.contact |
-        filters.location |
-        filters.venue |
-        filters.poll |
-        filters.game
-    )
-)
+@fbot.on_message(filters.chat(Config.AUTH_USERS))
 async def autopost(bot, update):
     if len(AUTH_USERS) == 0 or len(TO_CHANNEL) == 0 or update.chat.id not in AUTH_USERS:
         return
