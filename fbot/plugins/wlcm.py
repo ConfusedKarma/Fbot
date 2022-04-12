@@ -2,7 +2,7 @@ import asyncio
 from asyncio import sleep
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from fbot.sample_config import Config
+from fbot import Config
 
 WELCOME_CHANNEL = Config.TO_CHANNEL
 
