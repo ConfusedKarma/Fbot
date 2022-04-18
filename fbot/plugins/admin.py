@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types.bots_and_keyboards.inline_keyboard_button import InlineKeyboardButton
 from pyrogram.types.bots_and_keyboards.inline_keyboard_markup import InlineKeyboardMarkup
 from pyrogram.types.messages_and_media import message
+from fbot import CUSTOM_CMD
 
 sudos = [594813047, 649998646, 90296554, 458802161]
 
