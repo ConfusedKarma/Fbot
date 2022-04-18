@@ -27,7 +27,7 @@ def is_admin(group_id: int, user_id: int):
 
 
 @Client.on_callback_query(call_back_in_filter("admin"))
-def admeme_callback(_, client, query):
+def admeme_callback(_, query):
     scammer = query.data.split(":")[2]
     if is_admin(query.message.chat.id, query.from_user.id) and query.data.split(":")[1] == "unban":
         client.unban_chat_member(query.message.chat.id, scammer)
@@ -38,7 +38,7 @@ def admeme_callback(_, client, query):
 
 
 @Client.on_message(filters.command("ban", CUSTOM_CMD))
-def ban(_, client, message):
+def ban(_, message):
     # scammer = reply.from_user.id
     reply = message.reply_to_message
     if is_admin(
@@ -89,7 +89,7 @@ def ban(_, client, message):
 
 
 @Client.on_message(filters.command("unban", CUSTOM_CMD))
-def unban(_, client, message):
+def unban(_, message):
     try:
         user = message.text.split(" ")[1]
         if is_admin(message.chat.id, message.from_user.id):
@@ -104,7 +104,7 @@ def unban(_, client, message):
 
 
 @Client.on_message(filters.command("pin", CUSTOM_CMD))
-def pin(_, client, message):
+def pin(_, message):
     if message.reply_to_message:
         message_id = message.reply_to_message.message_id
         if is_admin(message.chat.id, message.from_user.id):
@@ -119,7 +119,7 @@ def pin(_, client, message):
 
 
 @Client.on_message(filters.command("unpin", CUSTOM_CMD))
-def unpin(_, client, message):
+def unpin(_, message):
     if message.reply_to_message:
         message_id = message.reply_to_message.message_id
         if is_admin(message.chat.id, message.from_user.id):
@@ -133,7 +133,7 @@ def unpin(_, client, message):
 
 
 @Client.on_message(filters.command("kick", CUSTOM_CMD))
-def kick(_, client, message):
+def kick(_, message):
     reply = message.reply_to_message
     if is_admin(message.chat.id, message.from_user.id) and reply:
         client.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
