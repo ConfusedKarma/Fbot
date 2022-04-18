@@ -60,5 +60,5 @@ async def speedtestxyz_callback(client, query):
             replymsg += f"\n - **Upload:** `{speed_convert(result['upload'])}`"
             replymsg += f"\n - **Ping:** `{result['ping']}`"
             await query.message.edit_text(replymsg, parse_mode="markdown")
-    else:
-        await client.answer_callback_query(query.id, "No, you are not allowed to do this", show_alert=False)
+       else:
+            await client.answer_callback_query(query.id, "No, you are not allowed to do this", show_alert=False)
