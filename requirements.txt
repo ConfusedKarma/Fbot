@@ -8,3 +8,4 @@ cloudscraper
 requests
 regex
 wget
+emoji
