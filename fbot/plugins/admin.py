@@ -27,7 +27,7 @@ def is_admin(group_id: int, user_id: int):
 
 
 @Client.on_callback_query(call_back_in_filter("admin"))
-def admeme_callback(_, query):
+def admeme_callback(client, query):
     scammer = query.data.split(":")[2]
     if is_admin(query.message.chat.id, query.from_user.id) and query.data.split(":")[1] == "unban":
         client.unban_chat_member(query.message.chat.id, scammer)
@@ -38,7 +38,7 @@ def admeme_callback(_, query):
 
 
 @Client.on_message(filters.command("ban", CUSTOM_CMD))
-def ban(_, message):
+def ban(client, message):
     # scammer = reply.from_user.id
     reply = message.reply_to_message
     if is_admin(
@@ -89,7 +89,7 @@ def ban(_, message):
 
 
 @Client.on_message(filters.command("unban", CUSTOM_CMD))
-def unban(_, message):
+def unban(client, message):
     try:
         user = message.text.split(" ")[1]
         if is_admin(message.chat.id, message.from_user.id):
@@ -104,7 +104,7 @@ def unban(_, message):
 
 
 @Client.on_message(filters.command("pin", CUSTOM_CMD))
-def pin(_, message):
+def pin(client, message):
     if message.reply_to_message:
         message_id = message.reply_to_message.message_id
         if is_admin(message.chat.id, message.from_user.id):
@@ -119,7 +119,7 @@ def pin(_, message):
 
 
 @Client.on_message(filters.command("unpin", CUSTOM_CMD))
-def unpin(_, message):
+def unpin(client, message):
     if message.reply_to_message:
         message_id = message.reply_to_message.message_id
         if is_admin(message.chat.id, message.from_user.id):
@@ -133,7 +133,7 @@ def unpin(_, message):
 
 
 @Client.on_message(filters.command("kick", CUSTOM_CMD))
-def kick(_, message):
+def kick(client, message):
     reply = message.reply_to_message
     if is_admin(message.chat.id, message.from_user.id) and reply:
         client.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
@@ -146,14 +146,14 @@ def kick(_, message):
 
 
 @Client.on_message(filters.command("promote", CUSTOM_CMD))
-def promote(_, message):
+def promote(client, message):
     if is_admin(message.chat.id, message.from_user.id) and message.reply_to_message:
         message.chat.promote_member(message.reply_to_message.from_user.id)
         message.reply('Promoted @{} !'.format(message.reply_to_message.from_user.username))
 
 
 @Client.on_message(filters.command("demote", CUSTOM_CMD))
-def demote(_, message):
+def demote(client, message):
     if is_admin(message.chat.id, message.from_user.id) and message.reply_to_message:
         message.chat.promote_member(message.reply_to_message.from_user.id, False, False, False, False, False, False,
                                     False, False)
