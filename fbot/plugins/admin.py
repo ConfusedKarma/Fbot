@@ -451,7 +451,7 @@ async def invite_link(client, message):
         if can_invite:
             try:
                 link = await client.export_chat_invite_link(message.chat.id)
-                await message.reply(text=link)
+                await message.reply(text=link, disable_web_page_preview=True)
             except Exception as e:
                 print(e)
                 await message.reply("`Permission denied`")
