@@ -25,3 +25,5 @@ DOWNLOAD_LOCATION = Config.DOWNLOAD_LOCATION
 # create download directory, if not exist
 if not os.path.isdir(DOWNLOAD_LOCATION):
     os.makedirs(DOWNLOAD_LOCATION)
+
+help_message = []
