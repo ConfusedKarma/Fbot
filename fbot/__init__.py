@@ -26,4 +26,3 @@ DOWNLOAD_LOCATION = Config.DOWNLOAD_LOCATION
 if not os.path.isdir(DOWNLOAD_LOCATION):
     os.makedirs(DOWNLOAD_LOCATION)
 
-help_message = []
