@@ -40,7 +40,7 @@ speedtest = filters.create(speedtest_callback)
 
 
 @Client.on_callback_query(speedtest)
-        if query.from_user.id in AUTH_USERS:
+    if query.from_user.id in AUTH_USERS:
         await query.message.edit_text('Runing a speedtest....')
         speed = speedtest.Speedtest()
         speed.get_best_server()
