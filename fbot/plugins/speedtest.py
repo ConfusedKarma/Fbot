@@ -3,7 +3,7 @@ import re
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
-from fbot import CUSTOM_CMD
+from fbot import AUTH_USERS
 
 
 def convert(speed):
@@ -39,8 +39,8 @@ def speedtest_callback(_, __, query):
 speedtest = filters.create(speedtest_callback)
 
 
-@Client.on_callback_query("speedtest", CUSTOM_CMD)
-async def speedtestxyz_callback(client, query):
+@Client.on_callback_query(speedtest)
+if query.from_user.id in AUTH_USERS:
         await query.message.edit_text('Runing a speedtest....')
         speed = speedtest.Speedtest()
         speed.get_best_server()
@@ -60,5 +60,5 @@ async def speedtestxyz_callback(client, query):
             replymsg += f"\n - **Upload:** `{speed_convert(result['upload'])}`"
             replymsg += f"\n - **Ping:** `{result['ping']}`"
             await query.message.edit_text(replymsg, parse_mode="markdown")
-       else:
-            await client.answer_callback_query(query.id, "No, you are not allowed to do this", show_alert=False)
+    else:
+        await client.answer_callback_query(query.id, "No, you are not allowed to do this", show_alert=False)
