@@ -8,7 +8,7 @@ class Config(object):
       BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
       APP_ID = int(os.environ.get("APP_ID", 12345))
       API_HASH = os.environ.get("API_HASH")
-      CUSTOM_CMD = os.environ.get("CUSTOM_CMD", "!")
+      CUSTOM_CMD = os.environ.list[str](get("CUSTOM_CMD", "/", "!"))
       TO_CHANNEL = list(x for x in os.environ.get("TO_CHANNEL", "").replace("\n", " ").split(' '))
       # Array to store users who are authorized to use the bot
       AUTH_USERS = list(
