@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong, MessageEmpty
 
 
-@Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply)
+@Client.on_message(filters.regex(r"^s/(.+)?/(.+)?(/.+)?") & filters.reply) & ~filters.edited)
 async def sed(c: Client, m: Message):
     exp = regex.split(r"(?<![^\\]\\)/", m.text)
     pattern = exp[1]
