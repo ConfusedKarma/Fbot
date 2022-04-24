@@ -10,7 +10,7 @@ timeout = httpx.Timeout(40, pool=None)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
-@Client.on_message(filters.command("paste", CUSTOM_CMD) & filters.user(Config.AUTH_USERS))
+@Client.on_message(filters.command("paste", CUSTOM_CMD) & filters.user(Config.AUTH_USERS) & ~filters.edited))
 async def hastebin(c: Client, m: Message):
     start = datetime.now()
     if m.reply_to_message:
