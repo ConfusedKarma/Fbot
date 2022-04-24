@@ -17,4 +17,4 @@ async def telegraph(c: Client, m: Message, strings):
             tele_link = "https://telegra.ph" + media_urls[0]
             await m.reply_text(tele_link)
     else:
-        await m.reply_text("Reply?"))
+        await m.reply_text("Reply?")
