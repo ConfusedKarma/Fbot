@@ -9,7 +9,7 @@ BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Owner', url='https://tele
 
 
 
-@Client.on_message(filters.command("start", CUSTOM_CMD) & ~filters.edited))
+@Client.on_message(filters.command("start", CUSTOM_CMD) & ~filters.edited)
 async def start(bot, update):
     await update.reply_text(
         text=START_TEXT.format(update.from_user.mention),
