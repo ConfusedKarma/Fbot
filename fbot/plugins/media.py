@@ -13,7 +13,7 @@ def get_arg(message):
         return ""
     return " ".join(split[1:])
 
-@Client.on_message(filters.command("svn", CUSTOM_CMD))
+@Client.on_message(filters.command("svn", CUSTOM_CMD) & ~filters.edited))
 async def svn(client, message):
     message.chat.id
     message.from_user["id"]
