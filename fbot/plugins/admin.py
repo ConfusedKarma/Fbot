@@ -231,7 +231,7 @@ async def kick_user(client, message):
                     chat_id,
                     user_id
                     )
-                await client.kick_chat_member(chat_id, get_mem.user.id, int(time.time() + 45))
+                await message.chat.ban_member(chat_id, get_mem.user.id, int(time.time() + 45))
                 await message.reply(
                     f"[{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) **Kicked**"
                     )
@@ -268,7 +268,7 @@ async def ban_usr(client, message):
             if user_id:
                 try:
                     get_mem = await client.get_chat_member(chat_id, user_id)
-                    await client.kick_chat_member(chat_id, user_id)
+                    await message.chat.ban_member(chat_id, user_id)
                     await message.reply(
                         f"[{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) **Banned**\n")
 
@@ -319,7 +319,7 @@ async def unban_usr(client, message):
                     chat_id,
                     user_id
                     )
-                await client.unban_chat_member(chat_id, get_mem.user.id)
+                await message.chat.unban_member(chat_id, get_mem.user.id)
                 await message.reply(
                     f"[{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) **Unbanned**\n"
                     )
