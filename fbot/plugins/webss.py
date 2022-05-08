@@ -30,7 +30,7 @@ async def prints(c: Client, message: Message):
         the_url = the_url[1]
 
     if wrong:
-        await message.reply_text("Use correct format")
+        await message.reply_text("Provide Valid Url")
         return
 
     try:
