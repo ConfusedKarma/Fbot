@@ -10,3 +10,4 @@ regex
 wget
 emoji
 telegraph
+humanize
