@@ -39,7 +39,7 @@ def mdisk(url):
 
 
 @Client.on_message(filters.command("mdisk", CUSTOM_CMD) & filters.regex(r"https?://[^\s]+") & filters.user(Config.AUTH_USERS))
-async def mdik(bot, update):
+async def mdisk(bot, update):
     url = update.matches[0].group(0)
     bsdk = mdisk(url)
     message = await update.reply_text(
@@ -78,7 +78,7 @@ async def get_link(url: str):
         print(e)
         return False
 
-@Client.on_message(filters.regex('https://gplinks.co/')
+@Client.on_message(filters.command("gp", CUSTOM_CMD) & filters.regex(r"https?://[^\s]+") & filters.user(Config.AUTH_USERS))
 async def gp(message):
     if not message.text.startswith("https://gplinks") or message.text.startswith("gplinks"):
        await message.reply_text("Sorry, all I do is scrape GPLinks URLs :(")
