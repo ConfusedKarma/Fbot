@@ -11,3 +11,4 @@ wget
 emoji
 telegraph
 humanize
+beautifulsoup4
