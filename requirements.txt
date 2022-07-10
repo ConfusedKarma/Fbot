@@ -12,3 +12,4 @@ emoji
 telegraph
 humanize
 beautifulsoup4
+lxml
