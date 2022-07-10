@@ -53,7 +53,7 @@ def gp(url):
     header = { "referer": src.url }
     src = scraper.get(url, headers=header)
     
-    bs4 = BeautifulSoup(src.content, 'lxml')
+    bs4 = BeautifulSoup(src.content, 'html.parser')
     inputs = bs4.find_all('input')
     data = { input.get('name'): input.get('value') for input in inputs }
 
