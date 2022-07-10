@@ -78,7 +78,7 @@ async def get_link(url: str):
         print(e)
         return False
 
-
+@Client.on_message(filters.regex('https://gplinks.co/')
 async def gp(message):
     if not message.text.startswith("https://gplinks") or message.text.startswith("gplinks"):
        await message.reply_text("Sorry, all I do is scrape GPLinks URLs :(")
