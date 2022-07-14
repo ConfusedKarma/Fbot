@@ -258,3 +258,23 @@ async def checks_unicode(_, message: Message):
         await uni_msg.edit("`Non-Unicode Characters are included in this message!`")
     else:
         await uni_msg.edit(f"`{uni_count} Unicode Characters are included in this message!`")
+
+
+import urllib.request
+
+from bs4 import BeautifulSoup
+
+@Client.on_message(filters.command("cs", CUSTOM_CMD))
+async def cs(_, message: Message):
+    ok = await message.reply("`Processing...`")
+    score_page = "http://static.cricinfo.com/rss/livescores.xml"
+    page = urllib.request.urlopen(score_page)
+    soup = BeautifulSoup(page, "html.parser")
+    result = soup.find_all("description")
+    Sed = ""
+    for match in result:
+        Sed += match.get_text() + "\n\n"
+    await ok.edit(
+        f"<b><u>Match information gathered successful</b></u>\n\n\n<code>{Sed}</code>",
+        parse_mode="HTML",
+    )
