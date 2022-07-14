@@ -227,3 +227,34 @@ async def ping(fbot, message: Message):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await message.reply(f"**Pong!**\n`{ms} ms`")
+
+
+
+
+from emoji import UNICODE_EMOJI
+
+
+
+
+@Client.on_message(filters.command("uni", CUSTOM_CMD))
+async def checks_unicode(_, message: Message):
+    uni_msg = await message.reply("`Processing...`")
+    r_msg = message.reply_to_message
+    if not r_msg:
+        return await uni_msg.edit("`Reply to a text message!`")
+    msg_text = r_msg.text
+    if not msg_text:
+        return await uni_msg.edit("`Reply to a text message!`")
+    # Checking if the message have unicode characters
+    uni_count = 0
+    for char in list(msg_text):
+        try:
+            char.encode("ascii")
+        except:
+            if char in UNICODE_EMOJI["en"]:
+                return
+            uni_count += 1
+    if uni_count == 0:
+        await uni_msg.edit("`Non-Unicode Characters are included in this message!`")
+    else:
+        await uni_msg.edit(f"`{uni_count} Unicode Characters are included in this message!`")
