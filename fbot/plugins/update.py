@@ -47,7 +47,7 @@ from pyrogram import filters
 
 
 HEROKU_API = "d9100d76-456b-46aa-b2fe-74b21793f6c6"
-HEROKU_APP_NAME = "singhpmbot"0
+HEROKU_APP_NAME = "singhpmbot"
 UPSTREAM_REPO_URL = "https://github.com/ConfusedKarma/Fbot"
 requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
