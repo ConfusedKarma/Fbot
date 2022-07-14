@@ -13,3 +13,5 @@ telegraph
 humanize
 beautifulsoup4
 emoji
+GitPython
+heroku3
