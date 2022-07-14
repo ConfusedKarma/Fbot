@@ -39,10 +39,10 @@ def mdisk(url):
 
 
 @Client.on_message(filters.command("mdisk", CUSTOM_CMD) & filters.regex(r"https?://[^\s]+") & filters.user(Config.AUTH_USERS))
-async def mdisk(bot, update):
+async def mdisk(bot):
     url = update.matches[0].group(0)
     bsdk = mdisk(url)
-    message = await update.reply_text(
+    message = await bot.reply_text(
         text=bsdk, disable_web_page_preview=True, quote=True
     )
 
