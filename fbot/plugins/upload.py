@@ -8,7 +8,7 @@ from fbot import CUSTOM_CMD, Config
 
 async def progress_callback(current, total, bot, message: Message):
     if int((current / total) * 100) % 25 == 0:
-        await message.edit(f"{humanize.naturalsize(current)} / {humanize.naturalsize(total)}")
+        await message.reply(f"{humanize.naturalsize(current)} / {humanize.naturalsize(total)}")
 
 
 
