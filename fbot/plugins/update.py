@@ -166,7 +166,7 @@ async def upstream(client, message):
             repo.__del__()
             return
         await status.edit(
-            "`Userbot dyno build in progress, please wait for it to complete.`"
+            "`SinghPmBot dyno build in progress, please wait for it to complete.`"
         )
         ups_rem.fetch(ac_br)
         repo.git.reset("--hard", "FETCH_HEAD")
