@@ -138,7 +138,7 @@ async def upstream(client, message):
                 )
         else:
             await status.edit(
-                f"\n`SinghPmBot is`  **up-to-date**  `with`  **[[{ac_br}]]({UPSTREAM_REPO_URL}/tree/{ac_br})**\n",
+                f"\n`SinghPmBot is`  **up-to-date**  `with`  **[[{ac_br}]](t.me/singhrobot)**\n",
                 disable_web_page_preview=True,
             )
             repo.__del__()
