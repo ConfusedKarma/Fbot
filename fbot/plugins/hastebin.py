@@ -5,6 +5,9 @@ from pyrogram.types import Message
 from datetime import datetime
 from fbot.sample_config import Config
 
+from pykeyboard import InlineKeyboard
+from pyrogram.types import InlineKeyboardButton
+
 timeout = httpx.Timeout(40, pool=None)
 
 http = httpx.AsyncClient(http2=True, timeout=timeout)
@@ -27,6 +30,9 @@ async def hastebin(c: Client, m: Message):
         url = f"https://hastebin.com/{r.json()['key']}"
         end = datetime.now()
         ms = (end - start).seconds
-        await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(url, ms, disable_web_page_preview=True))
+        #await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(url, ms, disable_web_page_preview=True))
+        button = InlineKeyboard(row_width=1)
+        button.add(InlineKeyboardButton(text="Paste Link", url=url))
+
     else:
         await m.reply_text("Reply to Document or Text File")
