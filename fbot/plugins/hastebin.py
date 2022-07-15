@@ -32,7 +32,7 @@ async def hastebin(c: Client, m: Message):
         ms = (end - start).seconds
         #await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(url, ms, disable_web_page_preview=True))
         button = InlineKeyboard(row_width=1)
-        button.add(InlineKeyboardButton(text="Paste Link", url=url))
+        button.add(InlineKeyboardButton(text="Paste-Link", url=url))
 
     else:
         await m.reply_text("Reply to Document or Text File")
