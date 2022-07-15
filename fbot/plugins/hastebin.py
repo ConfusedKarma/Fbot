@@ -14,7 +14,7 @@ http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 START_TEXT = """Hello {}\Click below button to open Paste-link"""
 
-BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Paste-Link', url='purl')]])
+BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton("Paste Link", url=purl)]])
 
 @Client.on_message(filters.command("paste", CUSTOM_CMD) & filters.user(Config.AUTH_USERS) & ~filters.edited)
 async def hastebin(c: Client, m: Message):
