@@ -5,6 +5,7 @@ import sys
 import traceback
 from pyrogram import Client, filters
 from pyrogram.types import Message, User
+from fbot.sample_config import Config
 
 from pyrogram.raw import functions
 from pyrogram.errors import PeerIdInvalid
