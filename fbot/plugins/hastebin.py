@@ -5,15 +5,10 @@ from pyrogram.types import Message
 from datetime import datetime
 from fbot.sample_config import Config
 
-
 timeout = httpx.Timeout(40, pool=None)
 
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
-
-START_TEXT = """Hello {}\Click below button to open Paste-link"""
-
-BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton("Paste Link", url=purl)]])
 
 @Client.on_message(filters.command("paste", CUSTOM_CMD) & filters.user(Config.AUTH_USERS) & ~filters.edited)
 async def hastebin(c: Client, m: Message):
@@ -29,10 +24,9 @@ async def hastebin(c: Client, m: Message):
 
         url = "https://hastebin.com/documents"
         r = await http.post(url, data=mean.encode("UTF-8"))
-        purl = f"https://hastebin.com/{r.json()['key']}"
+        url = f"https://hastebin.com/{r.json()['key']}"
         end = datetime.now()
         ms = (end - start).seconds
-        await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(purl, ms, disable_web_page_preview=True))
-    )
+        await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(url, ms, disable_web_page_preview=True))
     else:
         await m.reply_text("Reply to Document or Text File")
