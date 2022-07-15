@@ -27,12 +27,12 @@ async def hastebin(c: Client, m: Message):
 
         url = "https://hastebin.com/documents"
         r = await http.post(url, data=mean.encode("UTF-8"))
-        url = f"https://hastebin.com/{r.json()['key']}"
+        purl = f"https://hastebin.com/{r.json()['key']}"
         end = datetime.now()
         ms = (end - start).seconds
-        #await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(url, ms, disable_web_page_preview=True))
+        #await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(purl, ms, disable_web_page_preview=True))
         button = InlineKeyboard(row_width=1)
-        button.add(InlineKeyboardButton(text="Paste-Link", url=url))
-
+        button.add(InlineKeyboardButton(text="Paste-Link", url=purl))
+        await m.reply_markup=(button)
     else:
         await m.reply_text("Reply to Document or Text File")
