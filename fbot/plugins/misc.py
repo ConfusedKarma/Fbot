@@ -10,6 +10,7 @@ from pyrogram.raw import functions
 from pyrogram.errors import PeerIdInvalid
 from datetime import datetime
 from time import sleep
+import requests
 
 from platform import python_version
 from pyrogram import __version__
@@ -278,3 +279,78 @@ async def cs(_, message: Message):
         f"<b><u>Match information gathered successful</b></u>\n\n\n<code>{Sed}</code>",
         parse_mode="HTML",
     )
+
+
+@Client.on_message(filters.command("csr", CUSTOM_CMD) & (filters.regex("https") | filters.regex("http") | filters.regex("www") & filters.private) & filters.user(Config.AUTH_USERS))
+async def scrapping(bot, message):
+    txt = await message.reply_text("Validating Link", quote=True)
+    try:  # Extracting Raw Data From Webpage ( Unstructured format)
+        url = str(message.text)
+        request = requests.get(url)
+        await txt.edit(text=f"Getting Raw Data from {url}", disable_web_page_preview=True)
+        file_write = open(f'RawData-{message.chat.username}.txt', 'a+')
+        file_write.write(f"{request.content}")  # Writing Raw Content to Txt file
+        file_write.close()
+        await message.reply_document(f"RawData-{message.chat.username}.txt", caption="©@BugHunterBots", quote=True)
+        os.remove(f"RawData-{message.chat.username}.txt")
+        await txt.delete()
+    except Exception as error:
+        print(error)
+        await message.reply_text(text=f"{error}", disable_web_page_preview=True, quote=True)
+        await txt.delete()
+        return
+    try:
+        txt = await message.reply_text(text=f"Getting HTML code from {url}", disable_web_page_preview=True, quote=True)
+        soup = BeautifulSoup(request.content, 'html5lib')  # Extracting Html code in Tree Format
+        file_write = open(f'HtmlData-{message.chat.username}.txt', 'a+')
+        soup.data = soup.prettify()  # parsing HTML
+        file_write.write(f"{soup.data}")  # writing data to txt
+        file_write.close()
+        await message.reply_document(f"HtmlData-{message.chat.username}.txt", caption="©@BugHunterBots", quote=True)
+        os.remove(f"HtmlData-{message.chat.username}.txt")
+        await txt.delete()
+    except Exception as error:
+        await message.reply_text(text=f"{error}", disable_web_page_preview=True, quote=True)
+        await txt.delete()
+        return
+    try:
+        txt = await message.reply_text(f"Getting all Links from {url}", disable_web_page_preview=True, quote=True)
+        file_write = open(f'AllLinks-{message.chat.username}.txt', 'a+')
+        for link in soup.find_all('a'):  # getting all <a> tags in Html
+            links = link.get('href')  # Extracting Href value of <a>
+            file_write.write(f"{links}\n\n")  # writing links to txt file
+        file_write.close()
+        await message.reply_document(
+            f"AllLinks-{message.chat.username}.txt",
+            caption="©@SinghRobot"
+        )
+        os.remove(f"AllLinks-{message.chat.username}.txt")
+        await txt.delete()
+    except Exception as error:
+        await message.reply_text(text=f"{error}", disable_web_page_preview=True, quote=True)
+        await txt.delete()
+
+    try:
+        txt = await message.reply_text(
+            f"Getting all Paragraph from {url} ...",
+            disable_web_page_preview=True,
+            quote=True
+        )
+        file_write = open(f'AllParagraph-{message.chat.username}.txt', 'a+')
+        paragraph = ""
+        for para in soup.find_all('p'):  # Extracting all <p> tags
+            paragraph = para.get_text()  # Getting Text from Paragraphs
+            file_write.write(f"{paragraph}\n\n")  # writing to a file
+        file_write.close()
+        
+        await txt.delete()
+        await message.reply_document(
+            f"AllParagraph-{message.chat.username}.txt",
+            caption="©@SinghRobot",
+            quote=True
+        )
+        os.remove(f"AllParagraph-{message.chat.username}.txt")
+    except Exception as error:
+        await message.reply_text(text=f"No Paragraphs Found!!", disable_web_page_preview=True, quote=True)
+        await txt.delete()
+        return
