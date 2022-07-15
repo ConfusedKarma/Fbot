@@ -17,7 +17,7 @@ START_TEXT = """Hello {}\Click below button to open Paste-link"""
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Paste-Link', url='purl')]])
 
 @Client.on_message(filters.command("paste", CUSTOM_CMD) & filters.user(Config.AUTH_USERS) & ~filters.edited)
-async def hastebin(c: Client, m: Message):
+async def hastebin(c: Client, m: Message, update):
     start = datetime.now()
     if m.reply_to_message:
         if m.reply_to_message.document:
@@ -34,7 +34,7 @@ async def hastebin(c: Client, m: Message):
         end = datetime.now()
         ms = (end - start).seconds
         #await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(purl, ms, disable_web_page_preview=True))
-        await m.reply_text(
+        await update.reply_text(
         text=START_TEXT.format(update.from_user.mention),
         reply_markup=BUTTONS,
         disable_web_page_preview=True,
