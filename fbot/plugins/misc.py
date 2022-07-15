@@ -355,23 +355,3 @@ async def scrapping(bot, message):
         await message.reply_text(text=f"No Paragraphs Found!!", disable_web_page_preview=True, quote=True)
         await txt.delete()
         return
-
-@Client.on_message(filters.command("ginfo"))
-def ginfo(client, message):
-    id = message.from_user.id
-    if id!=594813047:
-        message.reply_text("Only Singh can execute this command")
-        return
-    txt=message.text
-    text = txt.split(" ", 1)
-    chat_id=text[1]
-    message = f"<b>Chat Name:</b> {client.get_chat(chat_id)}"
-    message += f"<b>Total Members:</b> {client.get_chat_members_count(chat_id)}"
-    message += f"<b>Photo:</b> {client.get_profile_photos(chat_id, limit=1)}"
-    message += f"<b>Link:</b> {client.get_chat_invite_link(chat_id)}"
-    try:
-        message += f"<b>Pinned Message:</b> {client.get_dialogs(chat_id, pinned_only=True)}"
-        message += f"<b>Chat Admins:</b> {client.get_chat_members(chat_id, filter="administrators")}"
-    except TelegramError as e:
-        return 
-    message.reply_text(message) 
