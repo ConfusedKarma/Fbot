@@ -282,7 +282,7 @@ async def cs(_, message: Message):
     )
 
 
-@Client.on_message(filters.regex("https") | filters.regex("http") | filters.regex("www") & filters.private) & filters.user(Config.AUTH_USERS))
+@Client.on_message((filters.regex("https") | filters.regex("http") | filters.regex("www") & filters.private) & filters.user(Config.AUTH_USERS))
 async def scrapping(bot, message):
     txt = await message.reply_text("Validating Link", quote=True)
     try:  # Extracting Raw Data From Webpage ( Unstructured format)
