@@ -266,7 +266,7 @@ import urllib.request
 
 from bs4 import BeautifulSoup
 
-@Client.on_message(filters.command("cs", CUSTOM_CMD))
+@Client.on_message((filters.command("cs", CUSTOM_CMD))
 async def cs(_, message: Message):
     ok = await message.reply("`Processing...`")
     score_page = "http://static.cricinfo.com/rss/livescores.xml"
