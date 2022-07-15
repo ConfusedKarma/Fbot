@@ -118,7 +118,7 @@ async def upstream(client, message):
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     if "now" not in conf:
         if changelog:
-            changelog_str = f"**New UPDATE available for [[{ac_br}]]({UPSTREAM_REPO_URL}/tree/{ac_br}):\n\nCHANGELOG**\n\n{changelog}"
+            changelog_str = f"**New UPDATE available for [[{ac_br}]](t.me/SinghRobot):\n\nCHANGELOG**\n\n{changelog}"
             if len(changelog_str) > 4096:
                 await status.edit("`Changelog is too big, view the file to see it.`")
                 file = open("output.txt", "w+")
