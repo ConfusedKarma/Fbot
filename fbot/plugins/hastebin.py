@@ -5,13 +5,16 @@ from pyrogram.types import Message
 from datetime import datetime
 from fbot.sample_config import Config
 
-from pykeyboard import InlineKeyboard
-from pyrogram.types import InlineKeyboardButton
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 timeout = httpx.Timeout(40, pool=None)
 
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
+
+START_TEXT = """Hello {}\Click below button to open Paste-link"""
+
+BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('Paste-Link', url=purl')]])
 
 @Client.on_message(filters.command("paste", CUSTOM_CMD) & filters.user(Config.AUTH_USERS) & ~filters.edited)
 async def hastebin(c: Client, m: Message):
@@ -31,8 +34,11 @@ async def hastebin(c: Client, m: Message):
         end = datetime.now()
         ms = (end - start).seconds
         #await m.reply_text("[HASTEBIN]({}) in\n{} seconds".format(purl, ms, disable_web_page_preview=True))
-        button = InlineKeyboard(row_width=1)
-        button.add(InlineKeyboardButton(text="Paste-Link", url=purl))
-        await m.reply_markup(reply_markup=button)
+        await m.reply_text(
+        text=START_TEXT.format(update.from_user.mention),
+        reply_markup=BUTTONS,
+        disable_web_page_preview=True,
+        quote=True
+    )
     else:
         await m.reply_text("Reply to Document or Text File")
